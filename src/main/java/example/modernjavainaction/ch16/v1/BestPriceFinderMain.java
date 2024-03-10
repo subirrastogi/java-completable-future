@@ -1,4 +1,4 @@
-package example.java8inaction.ch11.part1;
+package example.modernjavainaction.ch16.v1;
 
 import java.util.List;
 import java.util.function.Supplier;

@@ -1,4 +1,4 @@
-package example.java8inaction.ch11.part1;
+package example.modernjavainaction.ch16.v1;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,8 +13,8 @@ public class BestPriceFinder {
             new Shop("Best Price"),
             new Shop("LetsSaveBig"),
             new Shop("MyFavoriteShop"),
-            new Shop("BuyItAll"),
-            new Shop("ShopEasy")
+            new Shop("BuyItAll")/*,
+            new Shop("ShopEasy")*/
     );
 
     private final Executor executor = Executors.newFixedThreadPool(shops.size(), new ThreadFactory() {
@@ -41,8 +41,8 @@ public class BestPriceFinder {
     public List<String> findPricesFuture(String product) {
         List<CompletableFuture<String>> priceFutures = shops.stream()
                 .map(shop -> CompletableFuture.supplyAsync(
-                        () -> shop.getName() + " price is "+
-                                shop.getPrice(product)))
+                        () -> String.format("%s price is %.2f", shop.getName(),
+                                shop.getPrice(product))))
                 .collect(Collectors.toList());
 
         return priceFutures.stream()
@@ -53,8 +53,8 @@ public class BestPriceFinder {
     public List<String> findPricesFutureWithCustomExecutor(String product) {
         List<CompletableFuture<String>> priceFutures = shops.stream()
                                                             .map(shop -> CompletableFuture.supplyAsync(
-                                                                    () -> shop.getName() + " price is "+
-                                                                            shop.getPrice(product), executor))
+                                                                    () -> String.format("%s price is %.2f", shop.getName(),
+                                                                            shop.getPrice(product))))
                                                             .collect(Collectors.toList());
 
         return priceFutures.stream()
