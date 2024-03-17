@@ -13,11 +13,26 @@ public class BestPriceFinder {
             new Shop("Best Price"),
             new Shop("LetsSaveBig"),
             new Shop("MyFavoriteShop"),
-            new Shop("BuyItAll")/*,
-            new Shop("ShopEasy")*/
+            new Shop("BuyItAll"),
+            new Shop("ShopEasy"),
+            new Shop("ShopSmart-1"),
+            new Shop("ShopSmart-2"),
+            new Shop("ShopSmart-3"),
+            new Shop("ShopSmart-4")
     );
 
     private final ExecutorService executorService = Executors.newFixedThreadPool(shops.size());
+
+    public List<String> findPricesSequentially(String product) {
+
+        List<String> priceList = new ArrayList<>();
+
+        for (Shop shop: shops) {
+            String str = String.format("%s price is %.2f", shop.getName(),  shop.getPrice(product));
+            priceList.add(str);
+        }
+        return  priceList;
+    }
 
     public List<String> findPrices(String product) {
 

@@ -8,9 +8,9 @@ public class BestPriceFinderMain
     public static void main(String[] args) {
         BestPriceFinder bestPriceFinder = new BestPriceFinder();
 
-        execute("Part-2 1. sequential", () -> bestPriceFinder.findPricesSequential("my favorite product"));
-        execute("Part-2 2. parallel", () -> bestPriceFinder.findPricesParallel("my favorite product"));
-        execute("Part-2 4. completable future with custom executor", () -> bestPriceFinder.findPricesFutureWithCustomExecutor("my favorite product"));
+        execute("Version-2 1. sequentially using streams", () -> bestPriceFinder.findPricesSequential("my favorite product"));
+        execute("Version-2 2. parallel using streams.parallelStream()", () -> bestPriceFinder.findPricesParallel("my favorite product"));
+        execute("Version-2 4. completable future with custom executor", () -> bestPriceFinder.findPricesFutureWithCustomExecutor("my favorite product"));
         /*execute("4. completable future using custom executor", () -> bestPriceFinder.findPricesFutureWithCustomExecutor("my favorite product"));*/
 
     }

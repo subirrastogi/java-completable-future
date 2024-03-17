@@ -14,7 +14,11 @@ public class BestPriceFinder {
             new Shop("LetsSaveBig"),
             new Shop("MyFavoriteShop"),
             new Shop("BuyItAll"),
-            new Shop("ShopEasy")
+            new Shop("ShopEasy"),
+            new Shop("ShopSmart-1"),
+            new Shop("ShopSmart-2"),
+            new Shop("ShopSmart-3"),
+            new Shop("ShopSmart-4")
     );
 
     private final Executor executor = Executors.newFixedThreadPool(shops.size(), new ThreadFactory() {
