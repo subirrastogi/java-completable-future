@@ -10,7 +10,7 @@ public class BestPriceFinderMain
 
         execute("Version-2 1. sequentially using streams", () -> bestPriceFinder.findPricesSequential("my favorite product"));
         execute("Version-2 2. parallel using streams.parallelStream()", () -> bestPriceFinder.findPricesParallel("my favorite product"));
-        execute("Version-2 4. completable future with custom executor", () -> bestPriceFinder.findPricesFutureWithCustomExecutor("my favorite product"));
+        execute("Version-2 4. CompletableFuture with custom executor", () -> bestPriceFinder.findPricesFutureWithCustomExecutor("my favorite product"));
         /*execute("4. completable future using custom executor", () -> bestPriceFinder.findPricesFutureWithCustomExecutor("my favorite product"));*/
 
     }

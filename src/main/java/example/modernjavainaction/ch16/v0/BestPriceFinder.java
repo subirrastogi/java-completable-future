@@ -13,12 +13,12 @@ public class BestPriceFinder {
             new Shop("Best Price"),
             new Shop("LetsSaveBig"),
             new Shop("MyFavoriteShop"),
-            new Shop("BuyItAll"),
+            new Shop("BuyItAll")/*,
             new Shop("ShopEasy"),
             new Shop("ShopSmart-1"),
             new Shop("ShopSmart-2"),
             new Shop("ShopSmart-3"),
-            new Shop("ShopSmart-4")
+            new Shop("ShopSmart-4")*/
     );
 
     private final ExecutorService executorService = Executors.newFixedThreadPool(shops.size());
@@ -34,7 +34,7 @@ public class BestPriceFinder {
         return  priceList;
     }
 
-    public List<String> findPrices(String product) {
+    public List<String> findPricesFuture(String product) {
 
         List<String> priceList = new ArrayList<>();
 

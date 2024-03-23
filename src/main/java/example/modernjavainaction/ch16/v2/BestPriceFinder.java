@@ -14,11 +14,11 @@ public class BestPriceFinder {
             new Shop("LetsSaveBig"),
             new Shop("MyFavoriteShop"),
             new Shop("BuyItAll"),
-            new Shop("ShopEasy"),
+            new Shop("ShopEasy")/*,
             new Shop("ShopSmart-1"),
             new Shop("ShopSmart-2"),
             new Shop("ShopSmart-3"),
-            new Shop("ShopSmart-4")
+            new Shop("ShopSmart-4")*/
     );
 
     private final Executor executor = Executors.newFixedThreadPool(shops.size(), new ThreadFactory() {
@@ -62,10 +62,11 @@ public class BestPriceFinder {
         List<CompletableFuture<String>> priceFutures = shops.stream()
                                                             .map(shop -> CompletableFuture.supplyAsync(
                                                                     () -> shop.getPrice(product), executor))
-                .map(future -> future.thenApply(Quote::parse))
-                .map(future -> future.thenCompose(quote ->
-                        CompletableFuture.supplyAsync(
-                                () -> Discount.applyDiscount(quote), executor)))
+                                                            .map(future -> future.thenApply(Quote::parse))
+                                                            .map(future -> future.thenCompose(
+                                                                    quote -> CompletableFuture.supplyAsync(
+                                                                            () -> Discount.applyDiscount(quote), executor))
+                                                            )
                                                             .collect(Collectors.toList());
 
         return priceFutures.stream()

@@ -9,7 +9,7 @@ public class BestPriceFinderMain {
         BestPriceFinder bestPriceFinder = new BestPriceFinder();
 
         execute("Version-0 1. Sequentially", () -> bestPriceFinder.findPricesSequentially("my favorite product"));
-        execute("Version-0 2. Using Future & Executor", () -> bestPriceFinder.findPrices("my favorite product"));
+        execute("Version-0 2. Using Future & Executor", () -> bestPriceFinder.findPricesFuture("my favorite product"));
     }
 
     private static void execute(String msg, Supplier<List<String >> s) {

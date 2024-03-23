@@ -14,11 +14,11 @@ public class BestPriceFinder {
             new Shop("LetsSaveBig"),
             new Shop("MyFavoriteShop"),
             new Shop("BuyItAll"),
-            new Shop("ShopEasy"),
+            new Shop("ShopEasy")/*,
             new Shop("ShopSmart-1"),
             new Shop("ShopSmart-2"),
             new Shop("ShopSmart-3"),
-            new Shop("ShopSmart-4")
+            new Shop("ShopSmart-4")*/
     );
 
     private final Executor executor = Executors.newFixedThreadPool(shops.size(), new ThreadFactory() {
@@ -44,10 +44,11 @@ public class BestPriceFinder {
 
     public List<String> findPricesFuture(String product) {
         List<CompletableFuture<String>> priceFutures = shops.stream()
-                .map(shop -> CompletableFuture.supplyAsync(
-                        () -> String.format("%s price is %.2f", shop.getName(),
-                                shop.getPrice(product))))
-                .collect(Collectors.toList());
+                                                            .map(
+                                                                    shop -> CompletableFuture.supplyAsync(
+                                                                            () -> String.format("%s price is %.2f", shop.getName(),
+                                                                                    shop.getPrice(product))))
+                                                            .collect(Collectors.toList());
 
         return priceFutures.stream()
                 .map(CompletableFuture::join)
